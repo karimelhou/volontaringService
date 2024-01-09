@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     // Building the Docker image
-                    dockerImage = docker.build("authservice-app:${env.BUILD_ID}")
+                    dockerImage = docker.build("volontaringservice-app:${env.BUILD_ID}")
                 }
             }
         }
@@ -41,9 +41,9 @@ pipeline {
             steps {
                 script {
                     // Tagging the image before pushing
-                    sh "docker tag authservice-app:${env.BUILD_ID} karimelhou/authservice:${env.BUILD_ID}"
+                    sh "docker tag volontaringservice-app:${env.BUILD_ID} karimelhou/volontaringservice:${env.BUILD_ID}"
                     // Pushing the image to Docker Hub
-                    sh "docker push karimelhou/authservice:${env.BUILD_ID}"
+                    sh "docker push karimelhou/volontaringservice:${env.BUILD_ID}"
                 }
             }
         }
@@ -52,7 +52,7 @@ pipeline {
             steps {
                 script {
                     echo "BUILD_ID: ${env.BUILD_ID}"
-                    sh "docker run -d -p 8082:8082 authservice-app:${env.BUILD_ID}"
+                    sh "docker run -d -p 8385:8385 volontaringservice-app:${env.BUILD_ID}"
                 }
             }
         }
